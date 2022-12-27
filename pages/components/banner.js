@@ -16,12 +16,12 @@ const Banner = () => {
                     </div>
                 </div>
                 <div className="hidden md:block h-44 md:h-60 xl:h-72">
-                    <img className="hidden h-full xl:block" src="https://i.ibb.co/xGZ4hRm/pexels-dmitry-zvolskiy-2082090-1.png" alt="pexels-dmitry-zvolskiy-2082090-1" />
-                    <img className="xl:hidden h-full" src="https://i.ibb.co/KWgn5zQ/pexels-dmitry-zvolskiy-2082090-1-1.png" alt="pexels-dmitry-zvolskiy-2082090-1-1" />
+                    <img className="hidden h-full xl:block" src="https://images.pexels.com/photos/1619651/pexels-photo-1619651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+                    <img className="xl:hidden h-full" src="https://images.pexels.com/photos/1619651/pexels-photo-1619651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="pexels-dmitry-zvolskiy-2082090-1-1" />
                 </div>
             </div>
             <div className="md:hidden mt-6 w-full">
-                <img src="https://i.ibb.co/xGZ4hRm/pexels-dmitry-zvolskiy-2082090-1.png" alt="pexels-dmitry-zvolskiy-2082090-1" className="w-full" />
+                <img src="https://images.pexels.com/photos/1619651/pexels-photo-1619651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" className="w-full" />
             </div>
         </div>
     );

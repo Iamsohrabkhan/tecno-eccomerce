@@ -1,8 +1,9 @@
 import { BsGrid, BsList } from "react-icons/bs";
+import { BiSearchAlt2 } from "react-icons/bi";
 import { useGlobalContext } from "./components/appContext";
+
 import GridView from "./components/views/gridView";
 import Listview from "./components/views/listView";
-
 const products = () => {
   const {
     filterProduct,
@@ -25,27 +26,45 @@ const products = () => {
     sortingValue,
     grid,
     setGrid,
+    active,
+    setActive,
   } = useGlobalContext();
   return (
     <>
       <main className="my-5 ">
         <div className=" flex justify-between items-center ml-5">
           <div className="search">
-            <input
-              type="search"
-              className="border-2 border-gray-500 py-0.5 px-1 focus:border-teal-500 focus:ring-teal-500 rounded-md w-4/5"
-              placeholder="Search"
-              value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
-              }}
-            />
+            <div className=" border-b-2 border-gray-200 pb-2 flex justify-center items-center md:mt-0 mt-10 w-2/4 ">
+              <input
+                placeholder="Search"
+                type="text"
+                aria-label="Search"
+                className="lg:w-96 md:w-72 w-full focus:outline-none placeholder-gray-600 text-base font-normal text-gray-600 leading-4 "
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
+              />
+              <BiSearchAlt2 />
+            </div>
           </div>
           <div className="grid-view flex space-x-2 -ml-36">
-            
-            <BsGrid className={` ${grid? "bg-black  text-white" :"bg-white  text-black "}  text-xl w-6 h-6 p-1 rounded-md cursor-pointer `} onClick={()=>{setGrid(true)}}/>
-            
-            <BsList className={` ${!grid? "bg-black  text-white" :"bg-white  text-black "}  w-6 h-6 text-xl p-1 rounded-md cursor-pointer`} onClick={()=>{setGrid(false)}}/>
+            <BsGrid
+              className={` ${
+                grid ? "bg-black  text-white" : "bg-white  text-black "
+              }  text-xl w-6 h-6 p-1 rounded-md cursor-pointer `}
+              onClick={() => {
+                setGrid(true);
+              }}
+            />
+
+            <BsList
+              className={` ${
+                !grid ? "bg-black  text-white" : "bg-white  text-black "
+              }  w-6 h-6 text-xl p-1 rounded-md cursor-pointer`}
+              onClick={() => {
+                setGrid(false);
+              }}
+            />
           </div>
           <div className="total-products ">
             {filterProduct.length} total Products
@@ -54,7 +73,7 @@ const products = () => {
             <select
               name=""
               id=""
-              className="p-2 bg-gray-100 border-b-pink-400 cursor-pointer"
+              className="p-2 bg-gray-100 border-b-color-primary cursor-pointer"
               onClick={(e) => {
                 setSortingValue(e.target.value);
               }}
@@ -72,14 +91,17 @@ const products = () => {
             <div className="category">
               <h2 className="font-semibold">Category</h2>
               <ul className="">
-                {category.map((curr) => {
+                {category.map((curr, i) => {
                   return (
                     <li
                       key={curr}
-                      className="cursor-pointer"
                       onClick={() => {
                         setCategoryFilter(curr);
+                        setActive(i);
                       }}
+                      className={`cursor-pointer ${
+                        active === i ? "text-black font-bold text-base" : ""
+                      }`}
                     >
                       {toCapitalize(curr)}
                     </li>
@@ -93,9 +115,9 @@ const products = () => {
               <select
                 name=""
                 id=""
-                className="py-2 px-3 rounded-md bg-gray-100 border-b-pink-400 cursor-pointer"
+                className="py-2 px-3 rounded-md bg-gray-100 border-b-color-primary cursor-pointer"
               >
-                {company.map((curr) => {
+                {company.map((curr, i) => {
                   return (
                     <option
                       key={curr}
@@ -131,7 +153,7 @@ const products = () => {
               <h2>Price - {priceFormat(priceFilter)}</h2>
               <input
                 type="range"
-                className="range-xl w-[45%] accent-pink-500"
+                className="range-xl w-[45%] accent-color-primary"
                 min={min}
                 max={max}
                 value={priceFilter}
@@ -143,7 +165,7 @@ const products = () => {
 
             {/* clear filter */}
             <div
-              className="mt-3 text-white bg-pink-500 py-1 px-3 w-fit rounded cursor-pointer"
+              className="mt-3 text-white bg-color-primary py-1 px-3 w-fit rounded cursor-pointer"
               onClick={clearFilter}
             >
               Clear Filters

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { useGlobalContext } from "../appContext";
 import Loader from "../loader";
@@ -17,7 +18,7 @@ const GridView = () => {
             <Loader />
           ) : (
             filterProduct.map((product,i) => (
-              <a key={i} className="group cursor-pointer">
+              <Link href={product.id} key={i} className="group cursor-pointer">
                 <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-3 xl:aspect-h-2">
                   <img
                     src={product.image}
@@ -31,7 +32,7 @@ const GridView = () => {
                 <p className="mt-1 text-lg font-medium text-gray-900">
                   {priceFormat(product.price)}
                 </p>
-              </a>
+              </Link>
             ))
           )}
         </div>

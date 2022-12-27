@@ -10,14 +10,14 @@ const About = () => {
               <div className="w-full px-3 sm:px-4 xl:w-1/2">
                 <div className="py-3 sm:py-4">
                   <img
-                    src="https://cdn.tailgrids.com/1.0/assets/images/services/image-1.jpg"
+                    src="https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     alt=""
                     className="w-full rounded-2xl"
                   />
                 </div>
                 <div className="py-3 sm:py-4">
                   <img
-                    src="https://cdn.tailgrids.com/1.0/assets/images/services/image-2.jpg"
+                    src="https://images.pexels.com/photos/1619651/pexels-photo-1619651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     alt=""
                     className="w-full rounded-2xl"
                   />
@@ -26,7 +26,7 @@ const About = () => {
               <div className="w-full px-3 sm:px-4 xl:w-1/2">
                 <div className="relative z-10 my-4">
                   <img
-                    src="https://cdn.tailgrids.com/1.0/assets/images/services/image-3.jpg"
+                    src="https://images.pexels.com/photos/1275229/pexels-photo-1275229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     alt=""
                     className="w-full rounded-2xl"
                   />
@@ -624,7 +624,7 @@ const About = () => {
               </p>
               <a
                 href="javascript:void(0)"
-                className="bg-primary inline-flex items-center justify-center rounded-lg py-4 px-10 text-center text-base font-normal text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                className="bg-color-primary inline-flex items-center justify-center rounded-lg py-4 px-5 text-center text-base font-normal text-white hover:bg-opacity-90 lg:px-6 xl:px-8"
               >
                 Get Started
               </a>

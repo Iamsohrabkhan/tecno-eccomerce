@@ -27,7 +27,7 @@ const HeroSection = () => {
                     <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                       <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
                         <img
-                          src="./img.jpg"
+                          src="https://images.pexels.com/photos/1619651/pexels-photo-1619651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                           alt=""
                           className="h-full w-full object-cover object-center"
                         />
@@ -85,7 +85,7 @@ const HeroSection = () => {
 
               <a
                 href="#"
-                className="inline-block rounded-md border border-transparent bg-pink-600 py-2 px-4 text-center font-medium text-white hover:bg-pink-700"
+                className="inline-block rounded-md border border-transparent bg-color-primary py-2 px-4 text-center font-medium text-white "
               >
                 Shop Collection
               </a>

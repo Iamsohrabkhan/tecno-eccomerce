@@ -22,7 +22,7 @@ const Contact = () => {
           </p>
           <div className="mb-8 flex w-full max-w-[370px]">
             <div
-              className="bg-primary text-primary mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-opacity-5 sm:h-[70px] sm:max-w-[70px]"
+              className="bg-color-primary text-primary mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-opacity-5 sm:h-[70px] sm:max-w-[70px]"
             >
               <svg
                 width="24"
@@ -124,7 +124,7 @@ const Contact = () => {
             <div>
               <button
                 type="submit"
-                className="bg-primary border-primary w-full rounded border p-3 text-white transition hover:bg-opacity-90"
+                className="bg-color-primary border-color-primary w-full rounded border p-3 text-white transition hover:bg-opacity-90"
               >
                 Send Message
               </button>

@@ -9,7 +9,6 @@ import Newslater from "./components/newslater";
 
 export default function Home() {
   const { isLoading } = useGlobalContext();
-
   return (
     <>
       <Head>

@@ -12,21 +12,25 @@ const AppProvider = ({ children }) => {
   const [companyFilter, setCompanyFilter] = useState("All");
   const [priceFilter, setPriceFilter] = useState(6000000);
   const [sortingValue, setSortingValue] = useState("All");
+  const [active, setActive] = useState(0)
 
   useEffect(() => {
     const getProducts = async (url) => {
+            
       try {
         const res = await fetch(url);
         const data = await res.json();
         setProducts(data);
-        setIsLoading(false);
+        setIsLoading(false)
       } catch (error) {
         console.log(`oops! failed to get data ${error.message}`);
-        setIsLoading(false);
+        setIsLoading(false)
       }
     };
     getProducts(API);
   }, []);
+
+
 
   // helper functions
   const priceFormat = (number) => {
@@ -94,12 +98,12 @@ const AppProvider = ({ children }) => {
       }
        else if (sortingValue === "a-z") {
        return arr.sort((a,b)=>{
-          return a.name.localeCompare(b.name);
+        return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
         })
       }
        else if (sortingValue === "z-a") {
        return arr.sort((b,a)=>{
-          return a.name.localeCompare(b.name);
+          return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
         })
       }
        else if(sortingValue==="lowest"){
@@ -145,7 +149,7 @@ const AppProvider = ({ children }) => {
         sortingValue,
         setSortingValue,
         grid,
-        setGrid,
+        setGrid,active, setActive
       }}
     >
       {children}

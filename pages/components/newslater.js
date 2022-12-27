@@ -13,21 +13,21 @@ function Newslater() {
                                     <label className="text-base font-bold text-gray-800 mb-2" htmlFor="email">
                                         Email
                                     </label>
-                                    <input type="email" id="email" placeholder="johnstark97@gmail.com" className="focus:outline-none focus:border-indigo-700 border-gray-300 border rounded-sm py-2 outline-none pl-2 pr-2" />
+                                    <input type="email" id="email" placeholder="johnstark97@gmail.com" className="focus:outline-none focus:border-color-primary border-gray-300 border rounded-sm py-2 outline-none pl-2 pr-2" />
                                 </div>
-                                <button type="submit" className="focus:outline-none bg-indigo-700 hover:bg-indigo-600 text-white text-base w-full py-3 px-6 rounded">
+                                <button type="submit" className="focus:outline-none bg-color-primary  text-white text-base w-full py-3 px-6 rounded">
                                     Subscribe to Newsletter
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div className="w-11/12 xl:w-5/12 mx-auto xl:mx-0 mt-8 xl:mt-0 flex justify-end md:w-5/12 bg-pink-100 relative py-20">
+                    <div className="w-11/12 xl:w-5/12 mx-auto xl:mx-0 mt-8 xl:mt-0 flex justify-end md:w-5/12 bg-color-primary relative py-20">
                         <div className="h-4/5 w-4/5">
                             <img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt className="h-full w-full overflow-hidden object-cover relative z-10 xl:-ml-56 lg:-ml-32 sm:-ml-20 -ml-12 md:-ml-20 rounded" />
                         </div>
                         <div className="absolute bottom-0 right-0 pb-2 pr-2 z-0">
                             <svg width={243} height={163} xmlns="http://www.w3.org/2000/svg">
-                                <g fill="pink" fillRule="evenodd">
+                                <g fill="black" fillRule="evenodd">
                                     <rect width={5} height={5} rx="2.5" />
                                     <rect x={30} width={5} height={5} rx="2.5" />
                                     <rect x={59} width={5} height={5} rx="2.5" />

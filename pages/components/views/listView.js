@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { useGlobalContext } from "../appContext";
 import Loader from "../loader";
+import Link from "next/link";
 
 export default function Listview() {
 
@@ -16,8 +17,10 @@ export default function Listview() {
                         isLoading ? (
                             <Loader />
                           ) : (
-                            filterProduct.map((curr,i)=>{
-                                return <div key={i} className="group group-hover:bg-opacity-60 transition duration-500 relative bg-gray-50 sm:p-28 py-36 px-10 flex justify-center items-center shadow-xl">
+                            filterProduct.map((curr)=>{
+                                return <Link href={curr.id} key={curr.id}>
+                            
+                                <div  className="group group-hover:bg-opacity-60 transition duration-500 relative bg-gray-50 sm:p-28 py-36 px-10 flex justify-center items-center shadow-xl">
                             <img className="group-hover:opacity-60 transition duration-500 w-72 rounded-lg " src={curr.image} alt="sofa-2" />
                             <div className="absolute sm:top-8 top-4 left-4 sm:left-8 flex justify-start items-start flex-col space-y-2">
                                 <div>
@@ -59,6 +62,7 @@ export default function Listview() {
                                 </button>
                             </div>
                         </div>
+                        </Link>
                             })
                           )
                     }
