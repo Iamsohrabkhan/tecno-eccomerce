@@ -12,25 +12,26 @@ const AppProvider = ({ children }) => {
   const [companyFilter, setCompanyFilter] = useState("All");
   const [priceFilter, setPriceFilter] = useState(6000000);
   const [sortingValue, setSortingValue] = useState("All");
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(0);
+  // add to cart
+  const [addData, setAddData] = useState([]);
+  const [quantity, setQuantity] = useState(1)
+
 
   useEffect(() => {
     const getProducts = async (url) => {
-            
       try {
         const res = await fetch(url);
         const data = await res.json();
         setProducts(data);
-        setIsLoading(false)
+        setIsLoading(false);
       } catch (error) {
         console.log(`oops! failed to get data ${error.message}`);
-        setIsLoading(false)
+        setIsLoading(false);
       }
     };
     getProducts(API);
   }, []);
-
-
 
   // helper functions
   const priceFormat = (number) => {
@@ -92,25 +93,21 @@ const AppProvider = ({ children }) => {
         return curr.price;
       }
     })
-    .filter((curr,i,arr) => {
+    .filter((curr, i, arr) => {
       if (sortingValue === "All") {
         return curr;
-      }
-       else if (sortingValue === "a-z") {
-       return arr.sort((a,b)=>{
-        return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
-        })
-      }
-       else if (sortingValue === "z-a") {
-       return arr.sort((b,a)=>{
+      } else if (sortingValue === "a-z") {
+        return arr.sort((a, b) => {
           return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
-        })
-      }
-       else if(sortingValue==="lowest"){
-            return arr.sort((a,b)=>a.price-b.price)
-      }
-       else if(sortingValue==="highest"){
-            return arr.sort((b,a)=>a.price-b.price)
+        });
+      } else if (sortingValue === "z-a") {
+        return arr.sort((b, a) => {
+          return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+        });
+      } else if (sortingValue === "lowest") {
+        return arr.sort((a, b) => a.price - b.price);
+      } else if (sortingValue === "highest") {
+        return arr.sort((b, a) => a.price - b.price);
       }
     });
 
@@ -119,10 +116,28 @@ const AppProvider = ({ children }) => {
     setSearch("");
     setCategoryFilter("All");
     setCompanyFilter("All");
-    setSortingValue("All")
+    setSortingValue("All");
     setPriceFilter(6000000);
   };
+  // add to cart
+  // console.log(quantity);
 
+
+  let orderData = (id, category, name, company, price,qty, image) => {
+    setAddData([
+      ...addData,
+      {
+      
+        id,
+        category,
+        name,
+        company,
+        price,
+        qty,
+        image,
+      },
+    ]);
+  };
   return (
     <AppContext.Provider
       value={{
@@ -149,7 +164,14 @@ const AppProvider = ({ children }) => {
         sortingValue,
         setSortingValue,
         grid,
-        setGrid,active, setActive
+        setGrid,
+        active,
+        setActive,
+
+        orderData,
+        addData,
+        quantity,setQuantity
+      
       }}
     >
       {children}

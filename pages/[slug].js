@@ -1,40 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useGlobalContext } from "./components/appContext";
 import {
   IoMdCart,
   IoMdStar,
   IoMdStarHalf,
   IoMdStarOutline,
 } from "react-icons/io";
-// import { useRouter } from "next/router";
+import Link from "next/link";
 
 export async function getServerSideProps(context) {
-  const pid = context.params.slug 
-  console.log(pid);
-try {
-    const API = `https://api.pujakaitem.com/api/products?id=${pid}`;
-    const res = await fetch(API)
-    const data = await res.json()
+  const pid = context.params.slug;
+  const API = `https://api.pujakaitem.com/api/products?id=${pid}`;
+  const res = await fetch(API);
+  const data = await res.json();
+
+  if (!data) {
     return {
-      props: { data}, // will be passed to the page component as props
-    }
-  } catch (error) {
-    console.log(error.message);
-    return {
-      props: { error }, // will be passed to the page component as props
-    }
+      notFound: true,
+    };
   }
+
+  return {
+    props: {
+      data,
+    }, // will be passed to the page component as props
+  };
 }
 
-const ProductDetail = ({data}) => {
+const ProductDetail = ({ data }) => {
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
-  // const router = useRouter();
-  // const pid = router.query.slug;
-  // console.log(pid);
 
 
-  
-
+  const { toCapitalize, priceFormat ,orderData,addData,quantity,setQuantity} = useGlobalContext();
   const {
     id,
     name,
@@ -48,11 +46,12 @@ const ProductDetail = ({data}) => {
     reviews,
     stars,
   } = data;
-  
+
   const arrStars = [1, 2, 3, 4, 5];
 
+
+
   return (
-    
     <div className="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
       <div className="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
         <img className="w-full" alt={image[0].id} src={image[0].url} />
@@ -97,15 +96,33 @@ const ProductDetail = ({data}) => {
                                 mt-2
                             "
           >
-            {name}
+            {toCapitalize(name)}
+          </h1>
+          <h1
+            className="
+                                lg:text-2xl
+                                text-xl
+                                font-medium
+                                lg:leading-6
+                                leading-7
+                                text-gray-800
+                                mt-2
+                            "
+          >
+            Price: {priceFormat(price)}
           </h1>
         </div>
         <div className="py-4 border-b border-gray-200 flex items-center justify-between">
-          <p className="text-base leading-4 text-gray-800">Available Colors</p>
+          <div className="">
+            <p className="text-base leading-4 text-gray-800">
+              Available Colors
+            </p>
+          </div>
           <div className="flex items-center justify-center">
-            {colors && colors.map((curr) => {
+            {colors.map((curr) => {
               return (
                 <div
+                key={curr}
                   className="            
                                      w-6
                                       h-6
@@ -120,8 +137,23 @@ const ProductDetail = ({data}) => {
             })}
           </div>
         </div>
-
+        <Link href="addtocart">
+    
         <button
+
+          onClick={() => {
+          
+              orderData(
+              id,
+              category,
+              name,
+              company,
+              price,
+              quantity,
+              image
+
+              );
+          }}
           className=" 
                         mt-3
                         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800
@@ -139,7 +171,7 @@ const ProductDetail = ({data}) => {
         >
           Add to Cart
           <IoMdCart className="ml-2 text-white" />
-        </button>
+        </button>    </Link>
         <div>
           <p className="xl:pr-48 text-base lg:leading-tight leading-normal text-gray-600 mt-7">
             {description}
@@ -151,7 +183,7 @@ const ProductDetail = ({data}) => {
           <p className="text-base leading-4 mt-4 text-gray-600">
             Reviews: {reviews}
           </p>
-          <p className="text-base leading-4 mt-4 flex items-center">
+          <div className="text-base leading-4 mt-4 flex items-center">
             <div className="mr-1">Stars: </div>
             {arrStars.map((curr) => {
               return (
@@ -166,7 +198,7 @@ const ProductDetail = ({data}) => {
                 </div>
               );
             })}
-          </p>
+          </div>
         </div>
         <div>
           <div className="border-t border-b py-4 mt-7 border-gray-200">
